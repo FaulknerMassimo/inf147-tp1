@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build tp1.exe",
+            "detail": "Compile every .cpp except Tests_* into build/tp1.exe",
+            "type": "shell",
+            "command": "mkdir -p build && x86_64-w64-mingw32-g++ -fdiagnostics-color=always -g -O0 $(ls *.cpp | grep -v '^Tests_') -o build/tp1.exe -lgdi32 -static",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Start tp1.exe under winedbg",
+            "detail": "Run build/tp1.exe in Wine with a gdb server on port 12345",
+            "type": "shell",
+            "command": "pkill -f 'winedbg[.]exe --gdb' && sleep 1; winedbg --gdb --no-start --port 12345 ./build/tp1.exe",
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "WINEDEBUG": "-all",
+                    "WINEDLLOVERRIDES": "mscoree,mshtml="
+                }
+            },
+            "dependsOn": "Build tp1.exe",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": {
+                "owner": "winedbg",
+                "pattern": { "regexp": "^\\b$" },
+                "background": {
+                    "activatesOnStart": true,
+                    "beginsPattern": "^\\b$",
+                    "endsPattern": "target remote localhost"
+                }
+            }
+        },
+        {
+            "label": "Stop winedbg",
+            "type": "shell",
+            "command": "pkill -f 'winedbg[.]exe --gdb' || true",
+            "presentation": {
+                "reveal": "never"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
