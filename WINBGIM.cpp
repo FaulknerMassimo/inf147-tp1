@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <iostream> // put in by MR for error messages 11/30/98
 #include <math.h>
-#include "winbgim.h"
+#include "WINBGIM.h"
 #ifndef random
 #define random(range) (rand() % (range))
 #endif
