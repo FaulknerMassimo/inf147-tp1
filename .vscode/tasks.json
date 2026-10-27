@@ -16,31 +16,11 @@
             }
         },
         {
-            "label": "Start tp1.exe under winedbg",
-            "detail": "Run build/tp1.exe in Wine with a gdb server on port 12345",
-            "type": "shell",
-            "command": "pkill -f 'winedbg[.]exe --gdb' && sleep 1; winedbg --gdb --no-start --port 12345 ./build/tp1.exe",
-            "options": {
-                "cwd": "${workspaceFolder}",
-                "env": {
-                    "WINEDEBUG": "-all",
-                    "WINEDLLOVERRIDES": "mscoree,mshtml="
-                }
-            },
-            "dependsOn": "Build tp1.exe",
-            "isBackground": true,
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": {
-                "owner": "winedbg",
-                "pattern": { "regexp": "^\\b$" },
-                "background": {
-                    "activatesOnStart": true,
-                    "beginsPattern": "^\\b$",
-                    "endsPattern": "target remote localhost"
-                }
-            }
+            "label": "Prepare debug",
+            "detail": "Kill any leftover winedbg, then build (winedbg itself is started by launch.json)",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Stop winedbg", "Build tp1.exe"],
+            "problemMatcher": []
         },
         {
             "label": "Stop winedbg",
