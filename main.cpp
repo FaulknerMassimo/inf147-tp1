@@ -1,11 +1,10 @@
-/*
- Programme : Devoir 1
- Par    : Massimo Faulkner
- Date   : 15 octobre 2026
-
-*/
-
-/*=========================================================*/
+/********************************************************************/
+/*	INF147 - Travail pratique #1                                    */
+/*	main.cpp                                                        */
+/*  Auteur : Massimo Faulkner                                       */
+/*                                                                  */
+/*	Description: Fichier du programme principal                     */
+/********************************************************************/
 
 //Permet de desactiver certains warnings du compilateur 
 #define _CRT_SECURE_NO_WARNINGS 
@@ -15,6 +14,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "tab_points.h"
+#include "WINBGIM.h"
 
 
 /*=========================================================*/
@@ -27,7 +27,12 @@
 /*                      PROTOTYPES                         */
 /*=========================================================*/
 
-//y'en a pas jsp
+
+/*                 AFFICHER_PTS_EN_ORDRE                   */
+/*       fonction qui affiche les points a l'ecran         */
+/*          ENTREE: tableau des points tab_pts[]           */
+/*                et la taille du tableau                  */
+void afficher_pts_en_ordre(t_point tab_pts[], int taille);
 
 
 /*=========================================================*/
@@ -36,10 +41,23 @@
 int main(void) {
 
     //A FAIRE
+    printf("test");
 
+    //assert()
+
+    //free()
 
     //retour obligatoire si le "main()" est de type "int"
 	return EXIT_SUCCESS;
 }
 
 
+/*=========================================================*/
+/*                 AFFICHER_PTS_EN_ORDRE                   */
+/*       fonction qui affiche les points a l'ecran         */
+/*=========================================================*/
+void afficher_pts_en_ordre(t_point tab_pts[], int taille) {
+    for(int i = 0; i < taille; i++) {
+        
+    }
+}

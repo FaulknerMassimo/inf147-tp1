@@ -6,6 +6,12 @@
 /*	Description: Pour creer le tableau de points                    */
 /********************************************************************/
 
+// Librairies usuelles a inclure
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "tab_points.h"
+
 
 /*=========================================================*/
 /*                       DISTANCE                          */
@@ -13,7 +19,7 @@
 /*                   entre deux points                     */
 /*=========================================================*/
 double distance(t_point * pA, t_point * pB) {
-    return sqrt(pow(pB.posx - pA.posx, 2) + pow(pB.posy - pA.posy, 2));
+    return sqrt(pow(pB->posx - pA->posx, 2) + pow(pB->posy - pA->posy, 2));
 }
 
 
@@ -23,10 +29,10 @@ double distance(t_point * pA, t_point * pB) {
 /*                   de deux vecteurs                      */
 /*=========================================================*/
 double prod_vectoriel(t_point * p0, t_point * p1, t_point * p2) {
-    double a = p2.posx - p0.posx;
-    double b = p1.posx - p0.posx;
-    double c = p2.posy - p0.posy;
-    double d = p1.posy - p0.posy;
+    double a = p2->posx - p0->posx;
+    double b = p1->posx - p0->posx;
+    double c = p2->posy - p0->posy;
+    double d = p1->posy - p0->posy;
 
     return a*d - b*c;
 }
@@ -37,16 +43,16 @@ double prod_vectoriel(t_point * p0, t_point * p1, t_point * p2) {
 /*    fonction qui calcule l'angle polaire d'un vecteur    */
 /*           par rapport a l'axe horizontale               */
 /*=========================================================*/
-double coord_polaire(t_point * pA, t_point pB, t_point * h_ref) {
+double coord_polaire(t_point * pA, t_point * pB, t_point * h_ref) {
     double dist = distance(pA, pB);
-    double angle = asin((pB.posy - pA.posy)/dist);
-    produit = prod_vectoriel(pA, h_ref, pB);
+    double angle = asin((pB->posy - pA->posy)/dist);
+    double produit = prod_vectoriel(pA, h_ref, pB);
 
     if (produit > 0) {
         return angle;
     }
     else if (produit < 0) {
-        return 2*((pi()/2) - angle) + angle;
+        return 2*((asin(1)/2) - angle) + angle;
     }
     else {
         return 90.0;
