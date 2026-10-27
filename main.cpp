@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "tab_points.h"
-#include "WINBGIM.h"
+#include "affichage.h"
 
 
 /*=========================================================*/
@@ -58,6 +58,12 @@ int main(void) {
 /*=========================================================*/
 void afficher_pts_en_ordre(t_point tab_pts[], int taille) {
     for(int i = 0; i < taille; i++) {
-        
+        dessiner_pt(tab_pts[i].posx, tab_pts[i].posy, i);
+        tab_pts[i].position = i;
+
+        if (i =! 0) {
+            dessiner_lig(tab_pts[i].posx, tab_pts[i].posy,
+                         tab_pts[i-1].posx, tab_pts[i-1].posy);
+        }
     }
 }
