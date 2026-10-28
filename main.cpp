@@ -15,6 +15,7 @@
 #include <math.h>
 #include "tab_points.h"
 #include "affichage.h"
+#include "pile.h"
 
 
 /*=========================================================*/
@@ -34,6 +35,20 @@
 /*          ENTREE: tableau des points tab_pts[]           */
 /*                et la taille du tableau                  */
 void afficher_pts_en_ordre(t_point tab_pts[], int taille);
+
+/*                  ALGO_GRAHAM_SCAN                       */
+/*     fonction qui complete l'algorithme de Graham        */
+/* ENTREE: le tableau de points, le nombre de points et    */
+/*        le pointeur de la pile pour le resultat          */
+/*   SORTIE: le nombre d'elements dans la pile_Graham      */
+int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile *pile_Graham);
+
+
+/*                 AFFICHER_SOLUTION                       */
+/*           fonction qui affiche les segments             */
+/*            qui forment l'enveloppe convexe              */
+/*   ENTREE: la pile de Graham qui contient les segments   */
+void afficher_solution(t_pile * pile_Graham);
 
 
 /*=========================================================*/
@@ -67,4 +82,23 @@ void afficher_pts_en_ordre(t_point tab_pts[], int taille) {
                          tab_pts[i-1].posx, tab_pts[i-1].posy);
         }
     }
+}
+
+
+/*=========================================================*/
+/*                  ALGO_GRAHAM_SCAN                       */
+/*     fonction qui complete l'algorithme de Graham        */
+/*=========================================================*/
+int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile *pile_Graham) {
+    //A FAIRE
+}
+
+
+/*=========================================================*/
+/*                 AFFICHER_SOLUTION                       */
+/*           fonction qui affiche les segments             */
+/*            qui forment l'enveloppe convexe              */
+/*=========================================================*/
+void afficher_solution(t_pile * pile_Graham) {
+    //A FAIRE
 }
