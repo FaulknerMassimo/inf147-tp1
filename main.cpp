@@ -109,8 +109,40 @@ void afficher_pts_en_ordre(t_point tab_pts[], int taille) {
 /*     fonction qui complete l'algorithme de Graham        */
 /*=========================================================*/
 int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile *pile_Graham) {
-    //A FAIRE
-    return 1;
+    {
+        push(pile_Graham, &tab_pts[0]);
+        push(pile_Graham, &tab_pts[1]);
+        push(pile_Graham, &tab_pts[2]);
+
+        // Ligne de p0 à p1 et de p1 à p2
+        dessiner_lig(tab_pts[0].posx, tab_pts[0].posy, tab_pts[1].posx, tab_pts[1].posy);
+        dessiner_lig(tab_pts[1].posx, tab_pts[1].posy, tab_pts[2].posx, tab_pts[2].posy);
+
+        delai_ecran(300);
+
+        for (int i = 3; i < nb_pts; i++) {
+            t_element pB, pA;
+            get_sommet(pile_Graham, &pB);
+            get_suiv_sommet(pile_Graham, &pA);
+
+            // Tant que le segment tourne vers la droite (produit vectoriel > 0)
+            while (get_nb_elements(pile_Graham) >= 2 && prod_vectoriel(&pA, &pB, &tab_pts[i]) > 0) {
+                pop(pile_Graham); // Retirer pB de l'enveloppe
+
+                // Effacer la ligne qui relie pA à pB
+                effacer_lig(pA.posx, pA.posy, pB.posx, pB.posy);
+                delai_ecran(100);
+
+                get_sommet(pile_Graham, &pB);
+                get_suiv_sommet(pile_Graham, &pA);
+            }
+
+            push(pile_Graham, &tab_pts[i]);
+            dessiner_lig(pB.posx, pB.posy, tab_pts[i].posx, tab_pts[i].posy);
+            delai_ecran(100);
+        }
+        return get_nb_elements(pile_Graham);
+
 }
 
 

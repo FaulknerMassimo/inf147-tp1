@@ -59,7 +59,7 @@ void push(t_pile * pile, t_element * elem);
 /*                          POP                            */
 /*       fonction qui retire l'element au sommet           */
 /*   ENTREE: la pile et le pointeur pour l'element enleve  */
-void pop(t_pile * pile, t_element * elem);
+void pop(t_pile * pile);
 
 
 /*                       GET_SOMMET                        */

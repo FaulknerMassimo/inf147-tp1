@@ -76,8 +76,7 @@ void push(t_pile * pile, t_element * elem) {
 /*                          POP                            */
 /*       fonction qui retire l'element au sommet           */
 /*=========================================================*/
-void pop(t_pile * pile, t_element * elem) {
-    *elem = pile->items[pile->sommet];
+void pop(t_pile * pile) {
     pile->sommet--;
 }
 
