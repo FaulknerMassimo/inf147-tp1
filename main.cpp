@@ -63,13 +63,13 @@ void afficher_solution(t_pile * pile_Graham);
 int main(void) {
     t_point *tab_pts = NULL;
     t_point h_ref;
+    t_pile pile_graham;
     int pos_pt_min;     //position du point minimal dans le tableau
 
     srand(time(NULL));    //initialise le générateur “rand()” (on doit inclure <time.h>)
 
     tab_pts = (t_point *) malloc(TAILLE * sizeof(t_point));
     assert(tab_pts);
-
     init_tab_alea(tab_pts, TAILLE, MAXX, MAXY);
 
     pos_pt_min = trouver_pt_minimal(tab_pts, TAILLE);
@@ -77,15 +77,26 @@ int main(void) {
     h_ref = placer_pt_reference(tab_pts, pos_pt_min);
 
     calcul_coord_polaires(tab_pts, TAILLE, &h_ref);
-
     trier_pts(tab_pts, TAILLE);
 
     mode_graphique();
-
     afficher_pts_en_ordre(tab_pts, TAILLE);
-
     pause_ecran();
 
+    nettoyer_ecran();
+
+    for(int i = 0; i < TAILLE; i++) {
+        dessiner_pt(tab_pts[i].posx, tab_pts[i].posy, i);
+    }
+
+    pile_graham = init_pile(TAILLE);
+    algo_Graham_scan(tab_pts, TAILLE, &pile_graham);
+    afficher_solution(&pile_graham);
+    pause_ecran();
+
+    fermer_mode_graph();
+
+    liberer_pile(&pile_graham);
     free(tab_pts);
 
     //retour obligatoire si le "main()" est de type "int"
@@ -158,20 +169,19 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile *pile_Graham) {
 void afficher_solution(t_pile * pile_graham) {
     printf("Nombre de points dans l'enveloppe : %d\n", get_nb_elements(pile_graham));
 
+    if (pile_graham == NULL || get_nb_elements(pile_graham) == 0) {
+        return;
+    }
 
     t_element pt_fin = pile_graham->items[0];
     t_element p0 = pt_fin;
     printf("Point : %d\n", p0.position);
 
-    while (get_nb_elements(pile_graham) > 0) {
-        t_element *p1 ;
-      if(get_suiv_sommet(pile_graham, p1) == 0 ){
-            printf("**ERREUR : get_suiv_sommet()");
-        }
-       
-        dessiner_lig(p0.posx, p0.posy, p1->posx, p1->posy);
-        printf("Point : %d\n", p1->position);
-        p0 = *p1;
+    for (int i = 1; i <= pile_graham->sommet; i++) {
+        t_element p1 = pile_graham->items[i];
+        dessiner_lig(p0.posx, p0.posy, p1.posx, p1.posy);
+        printf("Point : %d\n", p1.position);
+        p0 = p1;
     }
 
     // Fermer l'enveloppe
