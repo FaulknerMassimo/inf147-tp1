@@ -7,6 +7,9 @@
 /********************************************************************/
 
 
+#ifndef TAB_POINTS_H
+#define TAB_POINTS_H
+
 /*=========================================================*/
 /*                          TYPES                          */
 /*=========================================================*/
@@ -49,14 +52,6 @@ double prod_vectoriel(t_point * p0, t_point * p1, t_point * p2);
 double coord_polaire(t_point * pA, t_point pB, t_point * h_ref);
 
 
-/*                        ALEA                             */
-/*            fonction qui retourne un entier              */
-/*              aleatoire entre deux bornes                */
-/* ENTREE: les bornes min et max entre l'entier aleatoire  */
-/*              SORTIE: l"entier aleatoire                 */
-static int alea(int min, int max);
-
-
 /*                    INIT_TAB_ALEA                        */
 /*      fonction qui initialise tous les points du         */
 /*        tableau avec des coordonnees aleatoires          */
@@ -81,12 +76,21 @@ int trouver_pt_minimal(const t_point tab_pts[], int taille);
 /*          ENTREE: tableau tab_pts[] et indice            */
 /*              pos_min du point minimal                   */
 /*     SORTIE: le point de reference horizontal cree       */
-static t_point placer_pt_reference(t_point tab_pts[], int pos_min);
+t_point placer_pt_reference(t_point tab_pts[], int pos_min);
 
 
-//A FAIRE
+/*               CALCUL_COORD_POLAIRES                     */
+/*     fonction qui calcule l'angle polaire relatif        */
+/*           au point minimal et sa distance               */
+/*   ENTREE: le tableau de points, la taille du tableau    */
+/*              et le point de reference                   */
 void calcul_coord_polaires(t_point tab_pts[], int taille, t_point * ref);
 
 
-//A FAIRE
+/*                    TRIER_PTS                            */
+/*       fonction qui effectue un tri des points           */
+/*     en ordre croissant de leurs angles polaires         */
+/*   ENTREE: tableau des points et taille du tableau       */
 void trier_pts(t_point tab_pts[], int taille);
+
+#endif

@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
 #include "tab_points.h"
 #include "affichage.h"
 #include "pile.h"
@@ -24,6 +25,10 @@
 
 // Taille du tableau / nombre de points
 #define TAILLE 20
+
+#define MAXX 1400
+
+#define MAXY 800
 
 /*=========================================================*/
 /*                      PROTOTYPES                         */
@@ -55,10 +60,21 @@ void afficher_solution(t_pile * pile_Graham);
 /*                PROGRAMME PRINCIPAL                      */
 /*=========================================================*/
 int main(void) {
+    t_point tab_pts[TAILLE];
+    t_point h_ref;
+    int pos_pt_min;     //position du point minimal dans le tableau
 
-    //A FAIRE
-    printf("test");
+    srand(time(NULL));    //initialise le générateur “rand()” (on doit inclure <time.h>)
 
+    init_tab_alea(tab_pts, TAILLE, MAXX, MAXY);
+
+    pos_pt_min = trouver_pt_minimal(tab_pts, TAILLE);
+
+    h_ref = placer_pt_reference(tab_pts, pos_pt_min);
+
+    calcul_coord_polaires(tab_pts, TAILLE, &h_ref);
+
+    trier_pts(tab_pts, TAILLE);
     //assert()
 
     //free()
@@ -77,7 +93,7 @@ void afficher_pts_en_ordre(t_point tab_pts[], int taille) {
         dessiner_pt(tab_pts[i].posx, tab_pts[i].posy, i);
         tab_pts[i].position = i;
 
-        if (i =! 0) {
+        if (i != 0) {
             dessiner_lig(tab_pts[i].posx, tab_pts[i].posy,
                          tab_pts[i-1].posx, tab_pts[i-1].posy);
         }
@@ -91,6 +107,7 @@ void afficher_pts_en_ordre(t_point tab_pts[], int taille) {
 /*=========================================================*/
 int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile *pile_Graham) {
     //A FAIRE
+    return 1;
 }
 
 
