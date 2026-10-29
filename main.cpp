@@ -149,6 +149,26 @@ int algo_Graham_scan(t_point tab_pts[], int nb_pts, t_pile *pile_Graham) {
 /*           fonction qui affiche les segments             */
 /*            qui forment l'enveloppe convexe              */
 /*=========================================================*/
-void afficher_solution(t_pile * pile_Graham) {
-    //A FAIRE
+void afficher_solution(t_pile * pile_graham) {
+    printf("Nombre de points dans l'enveloppe : %d\n", get_nb_elements(pile_graham));
+
+
+    t_element pt_fin = pile_graham->items[0];
+    t_element p0 = pt_fin;
+    printf("Point : %d\n", p0.position);
+
+    while (get_nb_elements(pile_graham) > 0) {
+        t_element *p1 ;
+      if(get_suiv_sommet(pile_graham, p1) == 0 ){
+            printf("**ERREUR : get_suiv_sommet()");
+        }
+       
+        dessiner_lig(p0.posx, p0.posy, p1->posx, p1->posy);
+        printf("Point : %d\n", p1->position);
+        p0 = *p1;
+    }
+
+    // Fermer l'enveloppe
+    dessiner_lig(p0.posx, p0.posy, pt_fin.posx, pt_fin.posy);
+    printf("Point (fin) : %d\n", pt_fin.position);
 }
