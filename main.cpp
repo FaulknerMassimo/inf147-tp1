@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <assert.h>
 #include "tab_points.h"
 #include "affichage.h"
 #include "pile.h"
@@ -60,11 +61,14 @@ void afficher_solution(t_pile * pile_Graham);
 /*                PROGRAMME PRINCIPAL                      */
 /*=========================================================*/
 int main(void) {
-    t_point tab_pts[TAILLE];
+    t_point *tab_pts = NULL;
     t_point h_ref;
     int pos_pt_min;     //position du point minimal dans le tableau
 
     srand(time(NULL));    //initialise le générateur “rand()” (on doit inclure <time.h>)
+
+    tab_pts = (t_point *) malloc(TAILLE * sizeof(t_point));
+    assert(tab_pts);
 
     init_tab_alea(tab_pts, TAILLE, MAXX, MAXY);
 
@@ -75,9 +79,8 @@ int main(void) {
     calcul_coord_polaires(tab_pts, TAILLE, &h_ref);
 
     trier_pts(tab_pts, TAILLE);
-    //assert()
 
-    //free()
+    free(tab_pts);
 
     //retour obligatoire si le "main()" est de type "int"
 	return EXIT_SUCCESS;
