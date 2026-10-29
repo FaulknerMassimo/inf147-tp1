@@ -52,7 +52,7 @@ double coord_polaire(t_point * pA, t_point pB, t_point * h_ref) {
         return angle;
     }
     else if (produit < 0) {
-        return 2*((asin(1)/2) - angle) + angle;
+        return 2*(asin(1) - angle) + angle;
     }
     else {
         return 90.0;

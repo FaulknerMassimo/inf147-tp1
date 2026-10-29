@@ -80,6 +80,12 @@ int main(void) {
 
     trier_pts(tab_pts, TAILLE);
 
+    mode_graphique();
+
+    afficher_pts_en_ordre(tab_pts, TAILLE);
+
+    pause_ecran();
+
     free(tab_pts);
 
     //retour obligatoire si le "main()" est de type "int"
@@ -98,7 +104,7 @@ void afficher_pts_en_ordre(t_point tab_pts[], int taille) {
 
         if (i != 0) {
             dessiner_lig(tab_pts[i].posx, tab_pts[i].posy,
-                         tab_pts[i-1].posx, tab_pts[i-1].posy);
+                         tab_pts[0].posx, tab_pts[0].posy);
         }
     }
 }
