@@ -56,7 +56,8 @@ double coord_polaire(t_point * pA, t_point pB, t_point * h_ref) {
         return 2*(asin(1) - angle) + angle;
     }
     else {
-        return 90.0;
+        // Point a la verticale de pA : angle de PI/2 (en radians)
+        return asin(1);
     }
 }
 
