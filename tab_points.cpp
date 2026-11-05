@@ -6,10 +6,11 @@
 /*	Description: Pour creer le tableau de points                    */
 /********************************************************************/
 
-// Librairies usuelles a inclure
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+
+/*=========================================================*/
+/*                      LIBRAIRIES                         */
+/*=========================================================*/
+
 #include "tab_points.h"
 
 

@@ -6,7 +6,14 @@
 /*	Description: Module de gestion d'une pile                       */
 /********************************************************************/
 
-// Librairies usuelles a inclure 
+
+/*=========================================================*/
+/*                      LIBRAIRIES                         */
+/*=========================================================*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
 #include "tab_points.h"
 
 

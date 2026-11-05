@@ -9,7 +9,11 @@
 //Permet de desactiver certains warnings du compilateur 
 #define _CRT_SECURE_NO_WARNINGS 
 
-// Librairies usuelles a inclure 
+
+/*=========================================================*/
+/*                      LIBRAIRIES                         */
+/*=========================================================*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -18,6 +22,7 @@
 #include "tab_points.h"
 #include "affichage.h"
 #include "pile.h"
+#include "interactions.h"
 
 
 /*=========================================================*/
@@ -65,32 +70,47 @@ int main(void) {
     t_point h_ref;
     t_pile pile_graham;
     int pos_pt_min;     //position du point minimal dans le tableau
+    int mode;
+    int nb_pts;
+    FILE * fichier;
 
-    srand(time(NULL));    //initialise le générateur “rand()” (on doit inclure <time.h>)
+    mode = demander_mode();
 
-    tab_pts = (t_point *) malloc(TAILLE * sizeof(t_point));
-    assert(tab_pts);
-    init_tab_alea(tab_pts, TAILLE, MAXX, MAXY);
+    if (mode == 1) {
 
-    pos_pt_min = trouver_pt_minimal(tab_pts, TAILLE);
+        nb_pts = TAILLE;
+
+        srand(time(NULL));    //initialise le générateur “rand()” (on doit inclure <time.h>)
+
+        tab_pts = (t_point *) malloc(nb_pts * sizeof(t_point));
+        assert(tab_pts);
+        init_tab_alea(tab_pts, nb_pts, MAXX, MAXY);
+
+    } else if (mode == 2) {
+        fichier = choisir_fichier();
+
+        tab_pts = lire_points(fichier, &nb_pts);
+    }
+
+    pos_pt_min = trouver_pt_minimal(tab_pts, nb_pts);
 
     h_ref = placer_pt_reference(tab_pts, pos_pt_min);
 
-    calcul_coord_polaires(tab_pts, TAILLE, &h_ref);
-    trier_pts(tab_pts, TAILLE);
+    calcul_coord_polaires(tab_pts, nb_pts, &h_ref);
+    trier_pts(tab_pts, nb_pts);
 
     mode_graphique();
-    afficher_pts_en_ordre(tab_pts, TAILLE);
+    afficher_pts_en_ordre(tab_pts, nb_pts);
     pause_ecran();
 
     nettoyer_ecran();
 
-    for(int i = 0; i < TAILLE; i++) {
+    for(int i = 0; i < nb_pts; i++) {
         dessiner_pt(tab_pts[i].posx, tab_pts[i].posy, i);
     }
 
-    pile_graham = init_pile(TAILLE);
-    algo_Graham_scan(tab_pts, TAILLE, &pile_graham);
+    pile_graham = init_pile(nb_pts);
+    algo_Graham_scan(tab_pts, nb_pts, &pile_graham);
     afficher_solution(&pile_graham);
     pause_ecran();
 

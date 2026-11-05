@@ -6,10 +6,11 @@
 /*	Description: Module de gestion d'une pile                       */
 /********************************************************************/
 
-// Librairies usuelles a inclure 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+
+/*=========================================================*/
+/*                      LIBRAIRIES                         */
+/*=========================================================*/
+
 #include "pile.h"
 
 
