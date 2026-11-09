@@ -19,6 +19,15 @@
 
 
 /*=========================================================*/
+/*                      CONSTANTES                         */
+/*=========================================================*/
+
+#define MODE_ALEA 1
+#define MODE_FICHIER 2
+#define MODE_SIMULATION 3
+
+
+/*=========================================================*/
 /*                   MACRO-FONCTIONS                       */
 /*=========================================================*/
 
@@ -31,9 +40,12 @@
 /*=========================================================*/
 
 /*                    DEMANDER_MODE                        */
-/* fonction qui demande a l'usager deux modes d'execution  */
-/*    SORTIE: 1 pour mode aleatoire a 20 points, 2 pour    */
-/*           mode a partir d'un fichier texte              */
+/* fonction qui demande a l'usager un des trois modes      */
+/*                    d'execution                          */
+/*  SORTIE: MODE_ALEA (1) pour le mode aleatoire a 20      */
+/*     points, MODE_FICHIER (2) pour le mode a partir      */
+/*     d'un fichier texte, MODE_SIMULATION (3) pour le     */
+/*                 mode simulation                         */
 int demander_mode(void);
 
 

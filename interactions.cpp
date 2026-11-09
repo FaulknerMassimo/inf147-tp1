@@ -17,19 +17,24 @@
 
 /*=========================================================*/
 /*                    DEMANDER_MODE                        */
-/* fonction qui demande a l'usager deux modes d'execution  */
+/* fonction qui demande a l'usager un des trois modes      */
+/*                    d'execution                          */
 /*=========================================================*/
 int demander_mode(void) {
     int good;
     int mode;
-    
+
     do {
 
-        printf("Choisir le mode d'execution (1 pour alea, 2 pour fichier): ");
+        printf("Choisir le mode d'execution :\n");
+        printf("  %d) mode aleatoire\n", MODE_ALEA);
+        printf("  %d) mode fichier\n", MODE_FICHIER);
+        printf("  %d) mode simulation\n", MODE_SIMULATION);
+        printf("Votre choix : ");
         good = scanf("%d", &mode);
         FFLUSH();
 
-        if (mode != 1 && mode != 2) {
+        if (good != 1 || mode < MODE_ALEA || mode > MODE_SIMULATION) {
             good = 0;
         }
 
