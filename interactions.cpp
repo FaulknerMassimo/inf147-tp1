@@ -21,23 +21,27 @@
 /*                    d'execution                          */
 /*=========================================================*/
 int demander_mode(void) {
-    int good;
-    int mode;
+    int good;   //1 si le scanf est valide, 0 sinon
+    int mode;   //mode saisi par l'usager
 
     do {
-
+        //affiche le menu des modes
         printf("Choisir le mode d'execution :\n");
         printf("  %d) mode aleatoire\n", MODE_ALEA);
         printf("  %d) mode fichier\n", MODE_FICHIER);
         printf("  %d) mode simulation\n", MODE_SIMULATION);
         printf("Votre choix : ");
+
+        //lis le choix puis vide le tampon du clavier
         good = scanf("%d", &mode);
         FFLUSH();
 
+        //valide si l'entier est entre les modes permis
         if (good != 1 || mode < MODE_ALEA || mode > MODE_SIMULATION) {
             good = 0;
         }
 
+        //message d'erreur si le choix est invalide
         if (good == 0) {
             printf("Entrez un nombre valide\n\n");
         }
@@ -54,16 +58,19 @@ int demander_mode(void) {
 /*         fichiers-texte de points disponibles            */
 /*=========================================================*/
 FILE * choisir_fichier(void) {
-    FILE * fichier = NULL;
-    char nom_fichier[80];
+    FILE * fichier = NULL;   //pointeur d'acces au fichier
+    char nom_fichier[80];    //nom du fichier saisi
 
     do {
+        //demande le nom du fichier (limite a 79 caracteres)
         printf("Entrez le nom du fichier: ");
         scanf("%79s", nom_fichier);
         FFLUSH();
 
+        //tente d'ouvrir le fichier en lecture
         fichier = fopen(nom_fichier, "rt");
 
+        //recommence tant que l'ouverture est invalide
         if (fichier == NULL) {
             printf("Erreur d'ouverture du fichier\n\n");
         }
@@ -79,31 +86,36 @@ FILE * choisir_fichier(void) {
 /*        retourne un tableau dynamique de points          */
 /*=========================================================*/
 t_point * lire_points(FILE *fichier, int *nb_pts) {
-    t_point * points;
-    int nombre_points;
+    t_point * points;     //tableau dynamique des points lus
+    int nombre_points;    //nombre de points indique dans le fichier
 
+    //lis le nombre de points sur la premiere ligne
     if (fscanf(fichier, "%d", &nombre_points) != 1 || nombre_points <= 0) {
         printf("Erreur de lecture du nombre de points\n");
         return NULL;
     }
 
+    //alloue le tableau de points et valide l'allocation
     points = (t_point *) malloc((size_t) nombre_points * sizeof(t_point));
     if (points == NULL) {
         printf("Erreur d'allocation de la memoire\n");
         return NULL;
     }
 
+    //lis les coordonnees X, Y de chaque point
     for (int i = 0; i < nombre_points; i++) {
         if (fscanf(fichier, "%d %d", &points[i].posx, &points[i].posy) != 2) {
             printf("Erreur de lecture des points\n");
             return NULL;
         }
 
+        //initialise les autres champs du point
         points[i].rad = 0.0;
         points[i].dist = 0.0;
         points[i].position = 0;
     }
 
+    //ferme le fichier puis retourne le nombre de points et le tableau
     fclose(fichier);
 
     *nb_pts = nombre_points;
