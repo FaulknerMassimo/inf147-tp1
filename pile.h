@@ -1,7 +1,7 @@
 /********************************************************************/
 /*	INF147 - Travail pratique #1                                    */
 /*	pile.h                                                          */
-/*  Auteur : Massimo Faulkner                                       */
+/*  Auteur : Massimo Faulkner, Tristan Bouchard, Massimo Faulkner   */
 /*                                                                  */
 /*	Description: Module de gestion d'une pile                       */
 /********************************************************************/

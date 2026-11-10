@@ -1,7 +1,7 @@
 /********************************************************************/
 /*	INF147 - Travail pratique #1                                    */
 /*	tab_points.h                                                    */
-/*  Auteur : Massimo Faulkner                                       */
+/*  Auteur : Massimo Faulkner, Tristan Bouchard, Massimo Faulkner   */
 /*                                                                  */
 /*	Description: Pour creer le tableau de points                    */
 /********************************************************************/

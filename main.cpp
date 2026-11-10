@@ -1,7 +1,7 @@
 /********************************************************************/
 /*	INF147 - Travail pratique #1                                    */
 /*	main.cpp                                                        */
-/*  Auteur : Massimo Faulkner                                       */
+/*  Auteur : Massimo Faulkner, Tristan Bouchard, Massimo Faulkner   */
 /*                                                                  */
 /*	Description: Fichier du programme principal                     */
 /********************************************************************/

@@ -1,7 +1,7 @@
 /********************************************************************/
 /*	INF147 - Travail pratique #1                                    */
 /*	interactions.cpp                                                */
-/*  Auteur : Massimo Faulkner                                       */
+/*  Auteur : Massimo Faulkner, Tristan Bouchard, Massimo Faulkner   */
 /*                                                                  */
 /*	Description: Module d'interaction avec l'usager et les          */
 /*               fichier externes                                   */
